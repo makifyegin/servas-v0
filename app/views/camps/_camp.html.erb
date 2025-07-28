@@ -1,0 +1,38 @@
+<div id="<%= dom_id camp %>" class="w-full sm:w-auto my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= camp.name %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Latitude:</strong>
+    <%= camp.latitude %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Longitude:</strong>
+    <%= camp.longitude %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Elevation:</strong>
+    <%= camp.elevation %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= camp.description %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Facilities:</strong>
+    <%= camp.facilities %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Parking available:</strong>
+    <%= camp.parking_available? ? "Yes" : "No" %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Permit required:</strong>
+    <%= camp.permit_required? ? "Yes" : "No" %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Max stay:</strong>
+    <%= camp.max_stay %>
+  </div>
+</div>

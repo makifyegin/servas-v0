@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Servas" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <!-- Logo/Home Link -->
+          <div class="flex-shrink-0 flex items-center">
+            <%= link_to root_path, class: "flex items-center" do %>
+              <span class="w-18 h-18 mt-8"><%= image_tag "servas-logo-hands.svg" %></span>
+            <% end %>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex space-x-4">
+            <%= link_to "Home", root_path, 
+                class: "text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium" %>
+            <%= link_to "Camps", camps_path, 
+                class: "text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium" %>            
+            <% if authenticated? %>
+              <%= button_to session_path, method: :delete, 
+                            class: "flex items-center gap-2 w-full text-left px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" do %>
+                <%= image_tag("sign-out.svg", class: "w-5 h-5", alt: "Logout") %>
+                <span>Log out</span>
+              <% end %>
+            <% else %>
+              <%= link_to new_session_path, method: :post, 
+                            class: "flex items-center gap-2 w-full text-left px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" do %>
+                <%= image_tag("sign-in.svg", class: "w-5 h-5", alt: "Login") %>
+                <span>Log in</span>
+              <% end %>
+            <% end %>
+
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+              <span class="sr-only">Open main menu</span>
+              <!-- Hamburger icon -->
+              <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <!-- Close icon -->
+              <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu (Hidden by default) -->
+      <div class="hidden md:hidden" id="mobile-menu">
+        <div class="pt-2 pb-3 space-y-1">
+          <%= link_to "Home", root_path, 
+              class: "block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" %>
+          <%= link_to "Camps", camps_path, 
+              class: "block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" %>
+          <% if authenticated? %>
+
+
+          <%= button_to session_path, method: :delete, 
+              class: "flex items-center gap-2 w-full text-left px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" do %>
+          <%= image_tag("sign-out.svg", class: "w-5 h-5", alt: "Logout") %>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+    
+    <main class="container mx-auto mt-28 px-5 flex">
+      <%= yield %>
+    </main>
+
+    <script>
+      // Mobile menu toggle
+      document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        const hamburger = this.querySelector('svg:first-child');
+        const close = this.querySelector('svg:last-child');
+        
+        menu.classList.toggle('hidden');
+        hamburger.classList.toggle('hidden');
+        close.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+</html>
