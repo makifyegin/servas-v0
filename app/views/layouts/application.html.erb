@@ -43,10 +43,16 @@
                 class: "text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium" %>               
             <% if authenticated? %>
 
+            <%# Debug output (remove after testing) %>
+     
 
+
+
+            <% if true %>
               <%= button_to session_path, method: :delete, 
                             class: "flex items-center gap-2 w-full text-left px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" do %>
                 <%= image_tag("user.svg", class: "w-5 h-5", alt: "User") %>
+                <% end %>
                        <% end %>
               <%= button_to session_path, method: :delete, 
                             class: "flex items-center gap-2 w-full text-left px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" do %>
