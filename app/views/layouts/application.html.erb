@@ -38,8 +38,16 @@
             <%= link_to "Home", root_path, 
                 class: "text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium" %>
             <%= link_to "Camps", camps_path, 
-                class: "text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium" %>            
+                class: "text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium" %>
+            <%= link_to "News", news_index_path, 
+                class: "text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium" %>               
             <% if authenticated? %>
+
+
+              <%= button_to session_path, method: :delete, 
+                            class: "flex items-center gap-2 w-full text-left px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" do %>
+                <%= image_tag("user.svg", class: "w-5 h-5", alt: "User") %>
+                       <% end %>
               <%= button_to session_path, method: :delete, 
                             class: "flex items-center gap-2 w-full text-left px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" do %>
                 <%= image_tag("sign-out.svg", class: "w-5 h-5", alt: "Logout") %>
@@ -80,7 +88,10 @@
           <%= link_to "Camps", camps_path, 
               class: "block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" %>
           <% if authenticated? %>
-
+          <%= button_to "", method: :delete, 
+              class: "flex items-center gap-2 w-full text-left px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" do %>
+          <%= image_tag("user.svg", class: "w-5 h-5", alt: "User") %>
+          <% end %>
 
           <%= button_to session_path, method: :delete, 
               class: "flex items-center gap-2 w-full text-left px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-gray-50" do %>

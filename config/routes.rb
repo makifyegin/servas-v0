@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :news
   get "home/index"
   resources :camps
   resource :session

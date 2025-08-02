@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_28_221944) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_01_233900) do
   create_table "camps", force: :cascade do |t|
     t.string "name"
     t.decimal "latitude", precision: 10, scale: 6
@@ -21,6 +21,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_28_221944) do
     t.boolean "parking_available"
     t.boolean "permit_required"
     t.integer "max_stay"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.text "summary"
+    t.datetime "published_at"
+    t.string "category"
+    t.string "tags"
+    t.boolean "is_featured"
+    t.string "cover_image"
+    t.string "author_name"
+    t.integer "view_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

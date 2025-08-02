@@ -1,0 +1,42 @@
+<div id="<%= dom_id news %>" class="w-full sm:w-auto my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= news.title %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Content:</strong>
+    <%= news.content %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Summary:</strong>
+    <%= news.summary %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Published at:</strong>
+    <%= news.published_at %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Category:</strong>
+    <%= news.category %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Tags:</strong>
+    <%= news.tags %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Is featured:</strong>
+    <%= news.is_featured? ? "Yes" : "No" %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Cover image:</strong>
+    <%= news.cover_image %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Author name:</strong>
+    <%= news.author_name %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">View count:</strong>
+    <%= news.view_count %>
+  </div>
+</div>
